@@ -22,28 +22,15 @@ function 左モーター (スピード: number) {
         pins.analogWritePin(AnalogPin.P15, Math.abs(左スピード))
     }
 }
-function 右モーター (スビード: number) {
-    右スピード = スビード
-    if (右スピード >= 0) {
-        pins.digitalWritePin(DigitalPin.P14, 0)
+function 右モーター (スピード: string) {
+    右スピード = スピード
+    if (左スピード >= 0) {
+        pins.digitalWritePin(DigitalPin.P16, 1)
     } else {
-        pins.digitalWritePin(DigitalPin.P14, 1)
-    }
-    // 正転のリミット
-    if (右スピード > 1023) {
-        右スピード = 1023
-    }
-    // 逆転のリミット
-    if (右スピード < -1023) {
-        右スピード = -1023
-    }
-    // ブレーキ
-    if (右スピード == 0) {
-        pins.digitalWritePin(DigitalPin.P13, 0)
-    } else {
-        pins.analogWritePin(AnalogPin.P13, Math.abs(右スピード))
+        pins.digitalWritePin(DigitalPin.P16, 0)
     }
 }
 basic.forever(function () {
-    右モーター(-400)
+    pins.digitalWritePin(DigitalPin.P14, 1)
+    pins.digitalWritePin(DigitalPin.P13, 1)
 })
