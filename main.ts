@@ -45,5 +45,10 @@ function 右モーター (スビード: number) {
     }
 }
 basic.forever(function () {
-    右モーター(-400)
+    serial.writeValue("x", sonar.ping(
+    DigitalPin.P8,
+    DigitalPin.P12,
+    PingUnit.MicroSeconds
+    ))
+    basic.pause(1000)
 })
